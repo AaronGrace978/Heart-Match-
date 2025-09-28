@@ -1,0 +1,146 @@
+{
+  "ollama_cloud": {
+    "enabled": true,
+    "api_key": "YOUR_OLLAMA_CLOUD_API_KEY_HERE",
+    "base_url": "https://api.ollama.ai",
+    "timeout": 300,
+    "max_retries": 3,
+    "retry_delay": 2.0,
+    "cost_limits": {
+      "max_cost_per_request": 0.10,
+      "max_daily_cost": 5.00,
+      "currency": "USD"
+    },
+    "usage_tracking": {
+      "enabled": true,
+      "track_requests": true,
+      "track_costs": true,
+      "track_performance": true
+    }
+  },
+  "cloud_models": {
+    "llama3.1-70b": {
+      "enabled": true,
+      "priority": 1,
+      "description": "Meta's 70B parameter model - excellent for complex reasoning",
+      "best_for": ["complex_reasoning", "coding", "analysis", "creative_writing"],
+      "cost_per_1k_tokens": 0.002,
+      "max_tokens": 8192
+    },
+    "llama3.1-405b": {
+      "enabled": true,
+      "priority": 2,
+      "description": "Meta's massive 405B parameter model - state of the art reasoning",
+      "best_for": ["research", "complex_problem_solving", "advanced_reasoning"],
+      "cost_per_1k_tokens": 0.008,
+      "max_tokens": 16384
+    },
+    "qwen2.5-72b": {
+      "enabled": true,
+      "priority": 3,
+      "description": "Alibaba's 72B parameter model - great for multilingual tasks",
+      "best_for": ["multilingual", "reasoning", "coding", "analysis"],
+      "cost_per_1k_tokens": 0.002,
+      "max_tokens": 8192
+    },
+    "mixtral-8x22b": {
+      "enabled": true,
+      "priority": 4,
+      "description": "Mistral's mixture of experts model - balanced performance",
+      "best_for": ["balanced_tasks", "reasoning", "coding", "creative_writing"],
+      "cost_per_1k_tokens": 0.004,
+      "max_tokens": 8192
+    },
+    "gemma2-27b": {
+      "enabled": true,
+      "priority": 5,
+      "description": "Google's 27B parameter model - fast and efficient",
+      "best_for": ["fast_responses", "reasoning", "coding"],
+      "cost_per_1k_tokens": 0.001,
+      "max_tokens": 4096
+    },
+    "qwen3-coder-480b": {
+      "enabled": true,
+      "priority": 6,
+      "description": "Alibaba's 480B parameter coding model - advanced agentic capabilities",
+      "best_for": ["advanced_coding", "agentic_tasks", "long_context", "complex_reasoning"],
+      "cost_per_1k_tokens": 0.005,
+      "max_tokens": 32768
+    }
+  },
+  "routing_strategy": {
+    "default_mode": "hybrid",
+    "auto_fallback": true,
+    "performance_based_routing": true,
+    "cost_optimization": true,
+    "task_classification": {
+      "simple_questions": {
+        "preferred": "local",
+        "fallback": "cloud",
+        "max_tokens": 1024,
+        "keywords": ["hello", "hi", "what is", "explain briefly"]
+      },
+      "complex_reasoning": {
+        "preferred": "cloud",
+        "fallback": "local",
+        "max_tokens": 4096,
+        "keywords": ["analyze", "compare", "evaluate", "complex"]
+      },
+      "creative_writing": {
+        "preferred": "cloud",
+        "fallback": "local",
+        "max_tokens": 8192,
+        "keywords": ["write", "create", "story", "poem", "creative"]
+      },
+      "coding_tasks": {
+        "preferred": "cloud",
+        "fallback": "local",
+        "max_tokens": 4096,
+        "keywords": ["code", "program", "function", "algorithm", "debug"]
+      },
+      "research_analysis": {
+        "preferred": "cloud",
+        "fallback": "local",
+        "max_tokens": 8192,
+        "keywords": ["research", "study", "investigate", "comprehensive"]
+      }
+    }
+  },
+  "local_models": {
+    "mistral:7b": {
+      "enabled": true,
+      "priority": 1,
+      "connector": "mistral",
+      "description": "Fast 7B model for simple tasks"
+    },
+    "llama2:7b": {
+      "enabled": true,
+      "priority": 2,
+      "connector": "llama",
+      "description": "Reliable 7B model for general tasks"
+    },
+    "qwen2.5:7b": {
+      "enabled": true,
+      "priority": 3,
+      "connector": "qwen",
+      "description": "Advanced 7B model with good reasoning"
+    }
+  },
+  "performance_tracking": {
+    "enabled": true,
+    "track_response_times": true,
+    "track_success_rates": true,
+    "track_costs": true,
+    "retention_days": 30
+  },
+  "security": {
+    "api_key_encryption": false,
+    "request_logging": true,
+    "response_logging": false,
+    "data_retention": {
+      "prompts": false,
+      "responses": false,
+      "metadata": true
+    }
+  }
+}
